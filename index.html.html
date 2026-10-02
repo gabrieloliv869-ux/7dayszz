@@ -1,0 +1,1477 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="description"
+    content="Desafio 7 Dias: organize seu negócio local para vender pela internet em apenas 30 minutos por dia."
+  />
+
+  <title>Desafio 7 Dias | Meu Negócio Online</title>
+
+  <style>
+    :root {
+      --verde: #128c5b;
+      --verde-escuro: #075c3c;
+      --verde-claro: #e8f8ef;
+      --laranja: #f47721;
+      --laranja-escuro: #d85d0c;
+      --amarelo: #fff4d6;
+      --texto: #19332b;
+      --texto-suave: #60716a;
+      --fundo: #fbfdfc;
+      --branco: #ffffff;
+      --borda: #dceae3;
+      --sombra: 0 18px 50px rgba(10, 78, 51, 0.12);
+      --raio: 22px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--texto);
+      background: var(--fundo);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .section {
+      padding: 88px 0;
+    }
+
+    .section-title {
+      max-width: 760px;
+      margin: 0 auto 18px;
+      text-align: center;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.1;
+      letter-spacing: -1px;
+    }
+
+    .section-subtitle {
+      max-width: 720px;
+      margin: 0 auto 44px;
+      text-align: center;
+      color: var(--texto-suave);
+      font-size: 1.1rem;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      margin-bottom: 18px;
+      border-radius: 999px;
+      background: var(--verde-claro);
+      color: var(--verde-escuro);
+      font-weight: 700;
+      font-size: 0.84rem;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+
+    .eyebrow::before {
+      content: "✓";
+      display: grid;
+      width: 20px;
+      height: 20px;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--verde);
+      color: white;
+      font-size: 0.75rem;
+    }
+
+    .button {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 56px;
+      padding: 15px 25px;
+      border: 0;
+      border-radius: 13px;
+      background: var(--laranja);
+      color: var(--branco);
+      font-size: 1rem;
+      font-weight: 800;
+      text-align: center;
+      cursor: pointer;
+      box-shadow: 0 9px 22px rgba(244, 119, 33, 0.25);
+      transition: 0.25s ease;
+    }
+
+    .button:hover {
+      background: var(--laranja-escuro);
+      transform: translateY(-2px);
+      box-shadow: 0 13px 28px rgba(244, 119, 33, 0.32);
+    }
+
+    .button-outline {
+      background: transparent;
+      color: var(--verde-escuro);
+      border: 2px solid var(--verde);
+      box-shadow: none;
+    }
+
+    .button-outline:hover {
+      color: var(--branco);
+      background: var(--verde);
+      box-shadow: none;
+    }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 34px 0 92px;
+      background:
+        radial-gradient(circle at 90% 10%, rgba(244, 119, 33, 0.12), transparent 28%),
+        radial-gradient(circle at 10% 20%, rgba(18, 140, 91, 0.12), transparent 32%),
+        var(--branco);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 320px;
+      height: 320px;
+      right: -150px;
+      bottom: -180px;
+      border-radius: 50%;
+      background: rgba(18, 140, 91, 0.09);
+    }
+
+    .mini-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 70px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--verde-escuro);
+      font-weight: 900;
+      font-size: 1.1rem;
+    }
+
+    .brand-icon {
+      display: grid;
+      width: 38px;
+      height: 38px;
+      place-items: center;
+      border-radius: 12px;
+      background: var(--verde);
+      color: white;
+      font-size: 1.3rem;
+    }
+
+    .hero-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      align-items: center;
+      gap: 70px;
+    }
+
+    .hero h1 {
+      max-width: 700px;
+      margin-bottom: 22px;
+      color: var(--verde-escuro);
+      font-size: clamp(2.5rem, 5vw, 4.8rem);
+      line-height: 1.02;
+      letter-spacing: -2px;
+    }
+
+    .hero h1 span {
+      color: var(--laranja);
+    }
+
+    .hero-text {
+      max-width: 650px;
+      margin-bottom: 28px;
+      color: var(--texto-suave);
+      font-size: clamp(1.08rem, 2vw, 1.25rem);
+    }
+
+    .hero-button {
+      width: min(100%, 430px);
+    }
+
+    .small-note {
+      margin-top: 13px;
+      color: var(--texto-suave);
+      font-size: 0.88rem;
+    }
+
+    /* Mockup do ebook */
+    .ebook-area {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 490px;
+    }
+
+    .ebook-glow {
+      position: absolute;
+      width: 350px;
+      height: 350px;
+      border-radius: 50%;
+      background: var(--verde-claro);
+      filter: blur(2px);
+    }
+
+    .ebook {
+      position: relative;
+      z-index: 2;
+      width: min(310px, 80%);
+      min-height: 410px;
+      padding: 34px 27px;
+      overflow: hidden;
+      border-radius: 8px 18px 18px 8px;
+      background:
+        linear-gradient(145deg, rgba(255,255,255,0.08), transparent 40%),
+        var(--verde);
+      color: white;
+      box-shadow: 22px 25px 35px rgba(14, 70, 49, 0.25);
+      transform: rotate(5deg);
+    }
+
+    .ebook::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 12px;
+      background: rgba(0, 0, 0, 0.12);
+    }
+
+    .ebook::after {
+      content: "7";
+      position: absolute;
+      right: 18px;
+      bottom: -38px;
+      color: rgba(255,255,255,0.1);
+      font-size: 190px;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .ebook-label {
+      position: relative;
+      z-index: 2;
+      margin-bottom: 50px;
+      color: #bcefd2;
+      font-size: 0.8rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .ebook h2 {
+      position: relative;
+      z-index: 2;
+      max-width: 235px;
+      margin-bottom: 20px;
+      font-size: 2.5rem;
+      line-height: 0.98;
+      letter-spacing: -1px;
+    }
+
+    .ebook h2 span {
+      color: #ffd18d;
+    }
+
+    .ebook p {
+      position: relative;
+      z-index: 2;
+      max-width: 230px;
+      color: #e4f8ec;
+      font-size: 0.95rem;
+    }
+
+    .ebook-bottom {
+      position: absolute;
+      z-index: 2;
+      right: 25px;
+      bottom: 24px;
+      left: 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 15px;
+      border-top: 1px solid rgba(255,255,255,0.25);
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    .floating-badge {
+      position: absolute;
+      z-index: 3;
+      right: 0;
+      bottom: 55px;
+      padding: 15px 18px;
+      border-radius: 15px;
+      background: var(--laranja);
+      color: white;
+      font-weight: 800;
+      box-shadow: var(--sombra);
+      transform: rotate(-5deg);
+    }
+
+    /* Problema */
+    .problem {
+      background: #f2fbf6;
+    }
+
+    .problem-grid {
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .problem h2 {
+      margin-bottom: 18px;
+      font-size: clamp(2rem, 4vw, 3.1rem);
+      line-height: 1.08;
+    }
+
+    .problem-intro {
+      color: var(--texto-suave);
+      font-size: 1.1rem;
+    }
+
+    .check-list {
+      display: grid;
+      gap: 15px;
+      list-style: none;
+    }
+
+    .check-list li {
+      display: flex;
+      gap: 13px;
+      align-items: flex-start;
+      padding: 16px 18px;
+      border: 1px solid var(--borda);
+      border-radius: 14px;
+      background: var(--branco);
+      box-shadow: 0 7px 20px rgba(13, 93, 61, 0.05);
+      font-weight: 700;
+    }
+
+    .check-list li::before {
+      content: "✓";
+      flex: 0 0 25px;
+      display: grid;
+      width: 25px;
+      height: 25px;
+      place-items: center;
+      margin-top: 1px;
+      border-radius: 50%;
+      background: var(--verde-claro);
+      color: var(--verde);
+      font-weight: 900;
+    }
+
+    .closing-text {
+      grid-column: 1 / -1;
+      max-width: 900px;
+      margin: 5px auto 0;
+      padding: 24px;
+      border-left: 4px solid var(--laranja);
+      background: #fffaf1;
+      color: var(--texto);
+      font-size: 1.05rem;
+    }
+
+    /* Solução */
+    .solution-box {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 45px;
+      align-items: center;
+      padding: 50px;
+      border-radius: var(--raio);
+      background: var(--verde-escuro);
+      color: white;
+      box-shadow: var(--sombra);
+    }
+
+    .solution-box h2 {
+      font-size: clamp(2rem, 4vw, 3.1rem);
+      line-height: 1.08;
+    }
+
+    .solution-box p {
+      color: #d9f3e3;
+      font-size: 1.08rem;
+    }
+
+    .solution-icon {
+      display: grid;
+      width: 90px;
+      height: 90px;
+      place-items: center;
+      margin-bottom: 22px;
+      border-radius: 25px;
+      background: rgba(255,255,255,0.13);
+      font-size: 2.7rem;
+    }
+
+    /* Dias */
+    .days-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .day-card {
+      position: relative;
+      padding: 26px 21px;
+      border: 1px solid var(--borda);
+      border-radius: 18px;
+      background: var(--branco);
+      box-shadow: 0 8px 24px rgba(16, 80, 54, 0.06);
+      transition: 0.25s ease;
+    }
+
+    .day-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--sombra);
+    }
+
+    .day-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 47px;
+      height: 47px;
+      margin-bottom: 18px;
+      border-radius: 14px;
+      background: var(--verde);
+      color: white;
+      font-weight: 900;
+      font-size: 1.1rem;
+    }
+
+    .day-card:nth-child(even) .day-number {
+      background: var(--laranja);
+    }
+
+    .day-card h3 {
+      margin-bottom: 9px;
+      color: var(--verde-escuro);
+      font-size: 1.13rem;
+      line-height: 1.2;
+    }
+
+    .day-card p {
+      color: var(--texto-suave);
+      font-size: 0.94rem;
+    }
+
+    /* Diagnóstico */
+    .diagnostic {
+      background: var(--amarelo);
+    }
+
+    .diagnostic-box {
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 45px;
+      align-items: center;
+    }
+
+    .diagnostic-symbol {
+      display: grid;
+      width: 170px;
+      height: 170px;
+      place-items: center;
+      margin: 0 auto;
+      border: 13px solid rgba(244, 119, 33, 0.2);
+      border-radius: 50%;
+      background: var(--laranja);
+      color: white;
+      font-size: 4rem;
+      box-shadow: 0 0 0 15px rgba(244, 119, 33, 0.08);
+    }
+
+    .diagnostic h2 {
+      margin-bottom: 18px;
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.08;
+    }
+
+    .diagnostic p {
+      color: #695d45;
+      font-size: 1.08rem;
+    }
+
+    /* Conteúdo */
+    .inside-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .inside-item {
+      display: flex;
+      gap: 13px;
+      align-items: flex-start;
+      padding: 17px;
+      border: 1px solid var(--borda);
+      border-radius: 15px;
+      background: var(--branco);
+    }
+
+    .inside-item span {
+      flex: 0 0 27px;
+      display: grid;
+      width: 27px;
+      height: 27px;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--verde-claro);
+      color: var(--verde);
+      font-weight: 900;
+    }
+
+    .inside-item strong {
+      display: block;
+      line-height: 1.35;
+    }
+
+    /* Para quem é */
+    .audience {
+      background: #f2fbf6;
+    }
+
+    .audience-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 25px;
+    }
+
+    .audience-card {
+      padding: 35px;
+      border-radius: var(--raio);
+      background: white;
+      box-shadow: 0 10px 28px rgba(16, 80, 54, 0.06);
+    }
+
+    .audience-card.good {
+      border-top: 5px solid var(--verde);
+    }
+
+    .audience-card.bad {
+      border-top: 5px solid var(--laranja);
+    }
+
+    .audience-card h3 {
+      margin-bottom: 15px;
+      font-size: 1.5rem;
+    }
+
+    .audience-card.good h3 {
+      color: var(--verde-escuro);
+    }
+
+    .audience-card.bad h3 {
+      color: var(--laranja-escuro);
+    }
+
+    .audience-card p {
+      color: var(--texto-suave);
+    }
+
+    /* Oferta */
+    .offer-section {
+      padding: 95px 0;
+      background: var(--verde-escuro);
+    }
+
+    .offer-box {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 55px 35px;
+      border-radius: var(--raio);
+      background: white;
+      text-align: center;
+      box-shadow: 0 25px 70px rgba(0,0,0,0.18);
+    }
+
+    .offer-box h2 {
+      margin-bottom: 14px;
+      color: var(--verde-escuro);
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.08;
+    }
+
+    .price {
+      margin: 23px 0 5px;
+      color: var(--laranja);
+      font-size: clamp(3.5rem, 9vw, 6rem);
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -3px;
+    }
+
+    .price-label {
+      color: var(--texto-suave);
+      font-size: 0.95rem;
+      font-weight: 700;
+    }
+
+    .offer-description {
+      margin: 22px auto 28px;
+      color: var(--texto-suave);
+    }
+
+    .offer-button {
+      width: min(100%, 440px);
+    }
+
+    .trust-seals {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 23px;
+      color: var(--texto-suave);
+      font-size: 0.88rem;
+    }
+
+    .trust-seals span {
+      display: inline-flex;
+      gap: 5px;
+      align-items: center;
+    }
+
+    .trust-seals span::before {
+      content: "✓";
+      color: var(--verde);
+      font-weight: 900;
+    }
+
+    /* Criador */
+    .creator-box {
+      display: grid;
+      grid-template-columns: 190px 1fr;
+      gap: 35px;
+      align-items: center;
+      max-width: 850px;
+      margin: 0 auto;
+      padding: 35px;
+      border-radius: var(--raio);
+      background: var(--verde-claro);
+    }
+
+    .creator-photo {
+      display: grid;
+      width: 170px;
+      height: 170px;
+      place-items: center;
+      border: 4px solid white;
+      border-radius: 50%;
+      background: #c6ead5;
+      color: var(--verde-escuro);
+      font-size: 3.5rem;
+    }
+
+    .creator-box h2 {
+      margin-bottom: 14px;
+      color: var(--verde-escuro);
+      font-size: 2rem;
+    }
+
+    .creator-box p {
+      color: var(--texto-suave);
+      font-size: 1.05rem;
+    }
+
+    /* FAQ */
+    .faq-list {
+      display: grid;
+      gap: 13px;
+      max-width: 850px;
+      margin: 0 auto;
+    }
+
+    .faq-list details {
+      border: 1px solid var(--borda);
+      border-radius: 14px;
+      background: white;
+      overflow: hidden;
+    }
+
+    .faq-list summary {
+      position: relative;
+      padding: 20px 53px 20px 21px;
+      color: var(--verde-escuro);
+      font-weight: 800;
+      cursor: pointer;
+      list-style: none;
+    }
+
+    .faq-list summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq-list summary::after {
+      content: "+";
+      position: absolute;
+      right: 20px;
+      top: 14px;
+      color: var(--laranja);
+      font-size: 1.7rem;
+      font-weight: 400;
+    }
+
+    .faq-list details[open] summary::after {
+      content: "−";
+    }
+
+    .faq-answer {
+      padding: 0 21px 21px;
+      color: var(--texto-suave);
+    }
+
+    /* Chamada final */
+    .final-cta {
+      padding: 95px 0;
+      background:
+        linear-gradient(rgba(18, 140, 91, 0.92), rgba(7, 92, 60, 0.95)),
+        var(--verde);
+      color: white;
+      text-align: center;
+    }
+
+    .final-cta h2 {
+      margin-bottom: 18px;
+      font-size: clamp(2.3rem, 5vw, 4rem);
+      line-height: 1.05;
+    }
+
+    .final-cta p {
+      max-width: 650px;
+      margin: 0 auto 28px;
+      color: #dff7e8;
+      font-size: 1.1rem;
+    }
+
+    /* Rodapé */
+    footer {
+      padding: 32px 0 90px;
+      background: #063f2a;
+      color: #d9f3e3;
+    }
+
+    .footer-grid {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 17px;
+      color: #b8ddc8;
+      font-size: 0.9rem;
+    }
+
+    .footer-links a:hover {
+      color: white;
+      text-decoration: underline;
+    }
+
+    .copyright {
+      color: #9cc6ae;
+      font-size: 0.86rem;
+    }
+
+    /* WhatsApp flutuante */
+    .whatsapp-float {
+      position: fixed;
+      z-index: 20;
+      right: 19px;
+      bottom: 19px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 62px;
+      height: 62px;
+      border-radius: 50%;
+      background: #25d366;
+      color: white;
+      font-size: 1.8rem;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.22);
+      transition: 0.25s ease;
+    }
+
+    .whatsapp-float:hover {
+      transform: scale(1.08);
+      background: #1db954;
+    }
+
+    /* Responsividade */
+    @media (max-width: 980px) {
+      .hero-grid,
+      .problem-grid,
+      .solution-box,
+      .diagnostic-box {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-content {
+        text-align: center;
+      }
+
+      .hero-text {
+        margin-right: auto;
+        margin-left: auto;
+      }
+
+      .hero-button {
+        margin: 0 auto;
+      }
+
+      .ebook-area {
+        min-height: 440px;
+      }
+
+      .solution-icon {
+        margin: 0 auto 22px;
+      }
+
+      .solution-box {
+        text-align: center;
+      }
+
+      .diagnostic-symbol {
+        margin-bottom: 10px;
+      }
+
+      .diagnostic {
+        text-align: center;
+      }
+
+      .days-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 680px) {
+      .container {
+        width: min(100% - 28px, 1120px);
+      }
+
+      .section {
+        padding: 65px 0;
+      }
+
+      .mini-header {
+        margin-bottom: 45px;
+      }
+
+      .mini-header .button-outline {
+        display: none;
+      }
+
+      .hero {
+        padding-bottom: 55px;
+      }
+
+      .hero h1 {
+        font-size: clamp(2.4rem, 12vw, 3.6rem);
+      }
+
+      .ebook-area {
+        min-height: 420px;
+      }
+
+      .ebook {
+        width: 275px;
+        min-height: 370px;
+      }
+
+      .floating-badge {
+        right: 8px;
+        bottom: 36px;
+        font-size: 0.86rem;
+      }
+
+      .problem-grid,
+      .audience-grid,
+      .inside-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .closing-text {
+        padding: 20px;
+        text-align: left;
+      }
+
+      .solution-box {
+        padding: 34px 22px;
+      }
+
+      .days-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .diagnostic-box {
+        gap: 25px;
+      }
+
+      .offer-section {
+        padding: 65px 0;
+      }
+
+      .offer-box {
+        padding: 38px 20px;
+      }
+
+      .price {
+        font-size: 4.2rem;
+      }
+
+      .creator-box {
+        grid-template-columns: 1fr;
+        text-align: center;
+        justify-items: center;
+        padding: 28px 20px;
+      }
+
+      .footer-grid {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .whatsapp-float {
+        right: 14px;
+        bottom: 14px;
+        width: 57px;
+        height: 57px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HERO -->
+  <header class="hero" id="inicio">
+    <div class="container">
+      <div class="mini-header">
+        <a href="#inicio" class="brand">
+          <span class="brand-icon">✓</span>
+          <span>Meu Negócio Online</span>
+        </a>
+
+        <a
+          href="COLOCAR_LINK_DO_CHECKOUT_AQUI"
+          class="button button-outline"
+        >
+          Quero começar
+        </a>
+      </div>
+
+      <div class="hero-grid">
+        <div class="hero-content">
+          <span class="eyebrow">Desafio prático em PDF</span>
+
+          <h1>
+            Seu negócio na internet em
+            <span>7 dias</span>, com 30 minutos por dia
+          </h1>
+
+          <p class="hero-text">
+            Guia prático passo a passo para negócios locais aparecerem no
+            Google, organizarem o WhatsApp e venderem pelo Instagram.
+            Sem agência e sem saber de tecnologia.
+          </p>
+
+          <a
+            href="COLOCAR_LINK_DO_CHECKOUT_AQUI"
+            class="button hero-button"
+          >
+            QUERO COMEÇAR O DESAFIO POR R$ 27,90
+          </a>
+
+          <p class="small-note">
+            Pagamento único. Acesso imediato ao PDF.
+          </p>
+        </div>
+
+        <div class="ebook-area" aria-label="Mockup do ebook">
+          <div class="ebook-glow"></div>
+
+          <div class="ebook">
+            <div class="ebook-label">Guia prático</div>
+
+            <h2>
+              Desafio 7 Dias:
+              <span>Meu Negócio Online</span>
+            </h2>
+
+            <p>
+              Organize sua presença digital e comece a receber pedidos pela
+              internet.
+            </p>
+
+            <div class="ebook-bottom">
+              <span>30 min por dia</span>
+              <span>PDF</span>
+            </div>
+          </div>
+
+          <div class="floating-badge">
+            1 passo por dia
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- PROBLEMA -->
+  <section class="section problem">
+    <div class="container">
+      <div class="problem-grid">
+        <div>
+          <span class="eyebrow">Você não está sozinho</span>
+
+          <h2>Você se identifica com isso?</h2>
+
+          <p class="problem-intro">
+            Muitos donos de negócios locais passam por essas mesmas situações
+            todos os dias.
+          </p>
+        </div>
+
+        <ul class="check-list">
+          <li>As vendas caíram e o movimento na loja diminuiu</li>
+          <li>Parece que todo mundo foi para a internet, menos você</li>
+          <li>Você já tentou postar, mas não sabe o que postar nem para quê</li>
+          <li>O cliente te procura no Google e não te encontra</li>
+          <li>Você não tem dinheiro para pagar agência ou anúncio</li>
+        </ul>
+
+        <p class="closing-text">
+          Isso não é culpa sua. O hábito dos clientes mudou: hoje as pessoas
+          pesquisam no Google, olham o Instagram e chamam no WhatsApp antes de
+          comprar. Quem não aparece, perde a venda.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOLUÇÃO -->
+  <section class="section">
+    <div class="container">
+      <div class="solution-box">
+        <div>
+          <div class="solution-icon">🚀</div>
+          <h2>O Desafio 7 Dias: um passo por dia, no seu ritmo</h2>
+        </div>
+
+        <p>
+          Um guia prático em PDF, com passo a passo simples, modelos prontos
+          para copiar e colar e prompts de inteligência artificial para
+          personalizar tudo ao seu negócio. Você faz uma missão por dia, em no
+          máximo 30 minutos, e termina com seu negócio organizado para receber
+          o primeiro pedido online.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 DIAS -->
+  <section class="section" id="dias">
+    <div class="container">
+      <h2 class="section-title">O que você vai fazer em cada dia</h2>
+
+      <p class="section-subtitle">
+        Missões curtas e práticas para colocar seu negócio no caminho certo.
+      </p>
+
+      <div class="days-grid">
+        <article class="day-card">
+          <span class="day-number">01</span>
+          <h3>Seu WhatsApp vira uma loja</h3>
+          <p>
+            WhatsApp Business, catálogo, mensagem de saudação, respostas
+            rápidas e etiquetas.
+          </p>
+        </article>
+
+        <article class="day-card">
+          <span class="day-number">02</span>
+          <h3>Seu negócio aparece no Google</h3>
+          <p>
+            Perfil da Empresa no Google, fotos, horário e como pedir avaliações.
+          </p>
+        </article>
+
+        <article class="day-card">
+          <span class="day-number">03</span>
+          <h3>Instagram que vende</h3>
+          <p>
+            Perfil profissional, bio, destaques e link do WhatsApp.
+          </p>
+        </article>
+
+        <article class="day-card">
+          <span class="day-number">04</span>
+          <h3>Sua oferta de lançamento</h3>
+          <p>
+            Como criar uma oferta que atrai clientes sem dar prejuízo.
+          </p>
+        </article>
+
+        <article class="day-card">
+          <span class="day-number">05</span>
+          <h3>Conteúdo sem sofrimento</h3>
+          <p>
+            Calendário de 30 dias de posts, legendas e roteiros de vídeo usando
+            IA.
+          </p>
+        </article>
+
+        <article class="day-card">
+          <span class="day-number">06</span>
+          <h3>Trazer clientes</h3>
+          <p>
+            Como avisar clientes antigos, pedir indicação e divulgar nos grupos
+            locais.
+          </p>
+        </article>
+
+        <article class="day-card">
+          <span class="day-number">07</span>
+          <h3>Primeira venda e rotina</h3>
+          <p>
+            Como atender, fechar a venda e criar uma rotina de 15 minutos por
+            dia.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIAGNÓSTICO -->
+  <section class="section diagnostic">
+    <div class="container">
+      <div class="diagnostic-box">
+        <div class="diagnostic-symbol">?</div>
+
+        <div>
+          <span class="eyebrow">Comece pelo ponto certo</span>
+
+          <h2>
+            Antes de começar, você descobre em que ponto seu negócio está
+          </h2>
+
+          <p>
+            O guia começa com um diagnóstico de 10 perguntas que mostra se seu
+            negócio está invisível online, presente mas sem estratégia, ou
+            pronto para crescer. Dependendo do resultado, você sabe exatamente
+            quais dias precisa reforçar e quais são seus próximos passos.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- O QUE VEM DENTRO -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">O que vem dentro do PDF</h2>
+
+      <p class="section-subtitle">
+        Tudo organizado para você executar sem complicação.
+      </p>
+
+      <div class="inside-grid">
+        <div class="inside-item">
+          <span>✓</span>
+          <strong>Diagnóstico do negócio com pontuação</strong>
+        </div>
+
+        <div class="inside-item">
+          <span>✓</span>
+          <strong>7 dias de missões com passo a passo</strong>
+        </div>
+
+        <div class="inside-item">
+          <span>✓</span>
+          <strong>Modelos prontos de mensagens de WhatsApp</strong>
+        </div>
+
+        <div class="inside-item">
+          <span>✓</span>
+          <strong>Prompts de IA prontos para copiar e colar</strong>
+        </div>
+
+        <div class="inside-item">
+          <span>✓</span>
+          <strong>Modelos de bio para Instagram e de ofertas</strong>
+        </div>
+
+        <div class="inside-item">
+          <span>✓</span>
+          <strong>Checklist final de acompanhamento</strong>
+        </div>
+
+        <div class="inside-item">
+          <span>✓</span>
+          <strong>Plano dos próximos 30 dias</strong>
+        </div>
+
+        <div class="inside-item">
+          <span>✓</span>
+          <strong>Lista dos erros mais comuns e como evitá-los</strong>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARA QUEM É -->
+  <section class="section audience">
+    <div class="container">
+      <h2 class="section-title">Será que este desafio é para você?</h2>
+
+      <div class="audience-grid">
+        <article class="audience-card good">
+          <h3>Este desafio é para quem:</h3>
+
+          <p>
+            É dono de um negócio local e quer vender mais pela internet,
+            aceitando dedicar cerca de 30 minutos por dia durante 7 dias.
+          </p>
+        </article>
+
+        <article class="audience-card bad">
+          <h3>Este desafio não é para quem:</h3>
+
+          <p>
+            Procura uma fórmula mágica ou espera ganhar dinheiro sem fazer nada.
+            O método exige aplicação e participação.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- OFERTA -->
+  <section class="offer-section" id="oferta">
+    <div class="container">
+      <div class="offer-box">
+        <span class="eyebrow">Acesso imediato</span>
+
+        <h2>Comece hoje o seu desafio</h2>
+
+        <div class="price">R$ 27,90</div>
+
+        <div class="price-label">pagamento único</div>
+
+        <p class="offer-description">
+          Pagamento único. Acesso imediato. PDF para ler no celular ou imprimir.
+        </p>
+
+        <a
+          href="COLOCAR_LINK_DO_CHECKOUT_AQUI"
+          class="button offer-button"
+        >
+          QUERO COMEÇAR AGORA
+        </a>
+
+        <div class="trust-seals">
+          <span>Pagamento seguro</span>
+          <span>Acesso imediato</span>
+          <span>Entrega por e-mail</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CRIADOR -->
+  <section class="section">
+    <div class="container">
+      <div class="creator-box">
+        <div class="creator-photo" aria-label="Espaço reservado para foto">
+          👤
+        </div>
+
+        <div>
+          <h2>Sobre o criador</h2>
+
+          <p>
+            Criei este desafio porque vi muitos negócios locais perdendo vendas
+            por não saberem por onde começar na internet. Meu objetivo é
+            simplificar esse caminho para você.
+          </p>
+
+          <p style="margin-top: 12px; font-weight: 800; color: var(--verde-escuro);">
+            Gabriel Oliveira
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" id="faq">
+    <div class="container">
+      <h2 class="section-title">Perguntas frequentes</h2>
+
+      <div class="faq-list">
+        <details>
+          <summary>Preciso entender de tecnologia?</summary>
+          <div class="faq-answer">
+            Não. O guia usa linguagem simples e mostra tudo passo a passo.
+          </div>
+        </details>
+
+        <details>
+          <summary>Preciso pagar anúncio?</summary>
+          <div class="faq-answer">
+            Não. O desafio usa ferramentas gratuitas, como WhatsApp Business,
+            Perfil da Empresa no Google e Instagram.
+          </div>
+        </details>
+
+        <details>
+          <summary>Quanto tempo preciso dedicar por dia?</summary>
+          <div class="faq-answer">
+            Cerca de 30 minutos por dia durante 7 dias.
+          </div>
+        </details>
+
+        <details>
+          <summary>Como recebo o material?</summary>
+          <div class="faq-answer">
+            Por e-mail, em PDF, logo após a confirmação do pagamento.
+          </div>
+        </details>
+
+        <details>
+          <summary>Funciona para qualquer negócio local?</summary>
+          <div class="faq-answer">
+            Foi pensado para negócios locais e de serviço, como salões,
+            lanchonetes, lojas e prestadores de serviço. Os modelos podem ser
+            adaptados ao seu tipo de negócio.
+          </div>
+        </details>
+
+        <details>
+          <summary>Vocês garantem que vou vender?</summary>
+          <div class="faq-answer">
+            Não prometemos faturamento. O resultado depende da sua aplicação e
+            do seu tipo de negócio. O que garantimos é um método claro e
+            testável, com a meta de receber seu primeiro pedido online.
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHAMADA FINAL -->
+  <section class="final-cta">
+    <div class="container">
+      <h2>Seu negócio merece ser encontrado</h2>
+
+      <p>
+        Dê o primeiro passo para organizar sua presença online e facilitar o
+        contato dos clientes com o seu negócio.
+      </p>
+
+      <a
+        href="COLOCAR_LINK_DO_CHECKOUT_AQUI"
+        class="button"
+      >
+        QUERO COMEÇAR O DESAFIO POR R$ 27,90
+      </a>
+    </div>
+  </section>
+
+  <!-- RODAPÉ -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="brand">
+            <span class="brand-icon">✓</span>
+            <span>Meu Negócio Online</span>
+          </div>
+
+          <p class="copyright" style="margin-top: 10px;">
+            © 2026 Todos os direitos reservados.
+          </p>
+        </div>
+
+        <div>
+          <p class="copyright" style="margin-bottom: 9px;">
+            Dúvidas? Fale com a gente no WhatsApp
+          </p>
+
+          <div class="footer-links">
+            <a href="COLOCAR_LINK_DOS_TERMOS_AQUI">
+              Termos de Uso
+            </a>
+
+            <a href="COLOCAR_LINK_DA_PRIVACIDADE_AQUI">
+              Política de Privacidade
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- BOTÃO FLUTUANTE DO WHATSAPP -->
+  <a
+    href="https://wa.me/5586994541042?text=Oi%2Cvim%20do%20ebook%20e%20quero%20muito%20que%20meu%20negocio%20va%20para%20o%20digital"
+    class="whatsapp-float"
+    aria-label="Falar com a gente no WhatsApp"
+    title="Falar com a gente no WhatsApp"
+  >
+    ☎
+  </a>
+
+</body>
+</html>
